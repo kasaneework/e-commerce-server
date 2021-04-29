@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MY APP</title>
+    <style>
+        body {
+            max-width: 50%;
+            line-height: 2em;
+            margin: 2em auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <hr>
+    <h1>TEST ADD PRODUCT</h1>
+    <form action="/api/product" enctype="multipart/form-data" method="POST">
+        <div>
+            pName: <input type="text" name="pName">
+        </div>
+        <div>
+            pSlug: <input type="text" name="pSlug">
+        </div>
+        <div>
+            pQty: <input type="text" name="pQty">
+        </div>
+        <div>
+            pPrice: <input type="text" name="pPrice">
+        </div>
+        <div>
+            pPriceSale: <input type="text" name="pPriceSale">
+        </div>
+        <div>
+            pDesc: <input type="text" name="pDesc">
+        </div>
+        <div>
+            pSize: <input type="text" name="pSize">
+        </div>
+        <div>
+            pColor: <input type="text" name="pColor">
+        </div>
+        <div>
+            pStar: <input type="text" name="pStar">
+        </div>
+        <div>
+            pSpecification: <input type="text" name="pSpecification">
+        </div>
+
+        Select images: <input type="file" name="images" accept="image/*" multiple><br>
+        <input type="submit" value="Upload your files" />
+    </form>
+
+</body>
+
+</html>

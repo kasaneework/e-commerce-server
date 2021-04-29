@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MY APP</title>
+    <style>
+        body {
+            max-width: 50%;
+            line-height: 2em;
+            margin: 2em auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <hr>
+    <!--  SINGLE FILE -->
+    <h1>SINGLE FILE</h1>
+    <form action="/uploadfile" enctype="multipart/form-data" method="POST">
+        <input type="file" name="file_one" /><br>
+        <input type="submit" value="Upload a file" />
+    </form>
+
+    <hr>
+    <!-- MULTIPLE FILES -->
+    <h1>MULTIPLE FILES</h1>
+    <form action="/uploadmultiple" enctype="multipart/form-data" method="POST">
+        Select images: <input type="file" name="file_many" accept="image/*" multiple><br>
+        <input type="submit" value="Upload your files" />
+    </form>
+
+</body>
+
+</html>
