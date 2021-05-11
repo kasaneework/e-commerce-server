@@ -4,6 +4,7 @@ module.exports = (sequelize, Sequelize) => {
         pName: { type: Sequelize.STRING },
         pSlug: { type: Sequelize.STRING },
         pStatus: { type: Sequelize.BOOLEAN, defaultValue: true },
+        pFeatured: { type: Sequelize.BOOLEAN, defaultValue: false },
         pCategory: { type: Sequelize.INTEGER },
         pQty: { type: Sequelize.INTEGER },
         pPrice: { type: Sequelize.INTEGER },
@@ -15,7 +16,9 @@ module.exports = (sequelize, Sequelize) => {
         pStar: { type: Sequelize.INTEGER },
         pImageDefault: { type: Sequelize.STRING },
         pImages: { type: Sequelize.TEXT },
-        pSpecification: { type: Sequelize.STRING }
+        pSpecification: { type: Sequelize.STRING },
+
+        pRecentClick: { type: Sequelize.DATE }
     });
 
     return Product;

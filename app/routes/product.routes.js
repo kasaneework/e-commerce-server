@@ -14,11 +14,13 @@ module.exports = function(app) {
         next();
     });
 
+
     //--normal
     app.get(`/api/${apiPath}`, controller.findAll); //--get all
     app.get(`/api/${apiPath}/:id`, controller.findOne); //--get all
     app.post(`/api/${apiPath}`, sysUpload.upload.array('images', 12), [authJwt.verifyToken, authJwt.isAdmin], controller.create); //--create new
 
+    app.get(`/api/${apiPath}/recent_click/:slug`, controller.recentClick); //--recent click
 
     //--admin role
     app.get(`/api/${apiPath}/image/:id/:imagename`, [authJwt.verifyToken, authJwt.isAdmin], controller.deleteImage); //--delete image

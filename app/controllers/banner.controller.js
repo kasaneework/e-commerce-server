@@ -28,6 +28,7 @@ exports.create = function(req, res, next) {
         bName: req.body.bName,
         bSlug: req.body.bSlug,
         bTitle: req.body.bTitle,
+        bLink: req.body.bLink,
         bStatus: req.body.bStatus,
         bDesc: req.body.bDesc,
         bImage: files[0].filename,
@@ -113,6 +114,7 @@ exports.update = function(req, res, next) {
                 obj.bName = body.bName;
                 obj.bSlug = body.bSlug;
                 obj.bTitle = body.bTitle;
+                obj.bLink = body.bLink;
 
                 obj.bStatus = body.bStatus;
                 obj.bDesc = body.bDesc;

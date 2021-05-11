@@ -37,6 +37,7 @@ exports.create = function(req, res, next) {
         pName: req.body.pName,
         pSlug: req.body.pSlug,
         pStatus: req.body.pStatus,
+        pFeatured: req.body.pFeatured,
         pCategory: req.body.pCategory,
         pQty: req.body.pQty,
         pPrice: req.body.pPrice,
@@ -147,6 +148,7 @@ exports.update = function(req, res, next) {
                 obj.pName = body.pName;
                 obj.pSlug = body.pSlug;
                 obj.pStatus = body.pStatus;
+                obj.pFeatured = body.pFeatured;
                 obj.pCategory = body.pCategory;
                 obj.pQty = body.pQty;
                 obj.pPrice = body.pPrice;
@@ -272,16 +274,46 @@ exports.updateStatus = (req, res, next) => {
                 try {
                     obj.save().
                     then(saveData => {
-                            res.status(200).send({ data: saveData, message: "Update success!" });
-                        })
-                        .catch(err => {
-                            res.status(500).send({ message: err.message });
-                        });
+                        res.status(200).send({ data: saveData, message: "Update success!" });
+                    });
 
                 } catch (error) {
                     res.status(500).send({ message: error.message });
                 }
                 //-------------
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message });
+            });
+
+    } else {
+        res.status(500).send({ message: "id must have value!" });
+    }
+
+};
+
+exports.recentClick = (req, res, next) => {
+
+    const slug = req.params.slug;
+    if (slug) {
+
+        Product.findOne({ where: { pSlug: slug } })
+            .then(obj => {
+                if (!obj) {
+                    return res.status(404).send({ message: "Obj Not found." });
+                }
+                //--update pRecentClick
+                obj.pRecentClick = Date.now(); //--only one field
+                try {
+                    obj.save().
+                    then(saveData => {
+                        res.status(200).send({ data: saveData, message: "Update success!" });
+                    });
+
+                } catch (error) {
+                    res.status(500).send({ message: error.message });
+                }
+
             })
             .catch(err => {
                 res.status(500).send({ message: err.message });
