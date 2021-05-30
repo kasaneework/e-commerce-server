@@ -28,6 +28,7 @@ exports.create = function(req, res, next) {
         cName: req.body.cName,
         cSlug: req.body.cSlug,
         cStatus: req.body.cStatus,
+        cFeatured: req.body.cFeatured,
         cDesc: req.body.cDesc,
         cImage: files[0].filename,
     };
@@ -112,6 +113,7 @@ exports.update = function(req, res, next) {
                 obj.cName = body.cName;
                 obj.cSlug = body.cSlug;
                 obj.cStatus = body.cStatus;
+                obj.cFeatured = body.cFeatured;
                 obj.cDesc = body.cDesc;
                 if (files.length > 0) {
                     obj.cImage = newImage;

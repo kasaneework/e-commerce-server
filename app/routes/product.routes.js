@@ -17,12 +17,14 @@ module.exports = function(app) {
 
     //--normal
     app.get(`/api/${apiPath}`, controller.findAll); //--get all
-    app.get(`/api/${apiPath}/:id`, controller.findOne); //--get all
-    app.post(`/api/${apiPath}`, sysUpload.upload.array('images', 12), [authJwt.verifyToken, authJwt.isAdmin], controller.create); //--create new
-
-    app.get(`/api/${apiPath}/recent_click/:slug`, controller.recentClick); //--recent click
+    app.get(`/api/${apiPath}/getslug/:slug`, controller.getSlug); //--get slug
+    app.get(`/api/${apiPath}/getfeatured`, controller.getFeatured);
+    app.get(`/api/${apiPath}/getrecent`, controller.getRecent);
+    app.get(`/api/${apiPath}/recentclick/:slug`, controller.recentClick); //--recent click
+    app.get(`/api/${apiPath}/:id`, controller.findOne); //--get one    
 
     //--admin role
+    app.post(`/api/${apiPath}`, sysUpload.upload.array('images', 12), [authJwt.verifyToken, authJwt.isAdmin], controller.create); //--create new
     app.get(`/api/${apiPath}/image/:id/:imagename`, [authJwt.verifyToken, authJwt.isAdmin], controller.deleteImage); //--delete image
     app.get(`/api/${apiPath}/public/:id/:status`, [authJwt.verifyToken, authJwt.isAdmin], controller.updateStatus); //--update status
     app.put(`/api/${apiPath}/:id`, sysUpload.upload.array('images', 12), [authJwt.verifyToken, authJwt.isAdmin], controller.update); //--update 

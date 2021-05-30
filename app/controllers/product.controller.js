@@ -97,6 +97,77 @@ exports.findOne = (req, res) => {
     }
 };
 
+// Find a single Product with an slug
+exports.getSlug = (req, res) => {
+    const slug = req.params.slug;
+    console.log('slug--', slug);
+    if (slug) {
+        Product.findOne({ where: { pSlug: slug } })
+            .then(obj => {
+                if (!obj) {
+                    return res.status(404).send({ message: "Obj Not found." });
+                }
+                res.status(200).send({
+                    data: obj,
+                    message: "Obj found"
+                });
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message });
+            });
+    } else {
+        res.status(500).send({ message: "Slug must have value!" });
+    }
+};
+
+// Find product featured
+exports.getFeatured = (req, res) => {
+
+    Product.findAll({ where: { pFeatured: 1 } })
+        .then(obj => {
+            if (!obj) {
+                return res.status(404).send({ message: "Obj Not found." });
+            }
+            res.status(200).send({
+                data: obj,
+                message: "Obj found"
+            });
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message });
+        });
+
+};
+
+// Find product recent
+exports.getRecent = (req, res) => {
+
+    Product.findAll({
+            where: {
+                pRecentClick: {
+                    [Op.not]: null
+                }
+            },
+            order: [
+                ['pRecentClick', 'DESC']
+            ],
+            limit: 5,
+        })
+        .then(obj => {
+            if (!obj) {
+                return res.status(404).send({ message: "Obj Not found." });
+            }
+            res.status(200).send({
+                data: obj,
+                message: "Obj found"
+            });
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message });
+        });
+
+};
+
 // Update a Product by the id in the request
 exports.update = function(req, res, next) {
     const Id = parseInt(req.params.id);
