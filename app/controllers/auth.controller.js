@@ -50,7 +50,8 @@ exports.signin = (req, res) => {
     // console.log(`req.body--`, req.body);
     User.findOne({
             where: {
-                username: req.body.username,
+                // username: req.body.username,
+                email: req.body.username,
                 status: true //--new
             }
         })
