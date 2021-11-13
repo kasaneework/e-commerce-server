@@ -12,9 +12,11 @@ This project not done 100% yet. but you can run it and play with it.
 5.e-commerce-server set config app->config
 
 6.e-commerce-server set server.js =>> see //-- RUN BD Migration
+
 6.1. 
 // ####### 1.
 //--comment out and run at first time to init DB and Table after that comment it all again
+
 6.2.
 // ####### 2.
 //-- comment all no 1. and comment out no 2.
