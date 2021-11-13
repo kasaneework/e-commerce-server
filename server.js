@@ -20,8 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 //-- RUN BD Migration
 const db = require("./app/models");
 const Role = db.role;
-// db.sequelize.sync({ alter: true }); //--after modify  table
-// db.sequelize.sync({ force: true }).then(() => { //--run at first time to init DB and Table
+
+// ####### 1.
+//--comment out and run at first time to init DB and Table after that comment it all again
+
+// ***********************
+// db.sequelize.sync({ force: true }).then(() => {
 //     console.log('Drop and Resync Db');
 //     initial();
 // });
@@ -31,6 +35,13 @@ const Role = db.role;
 //     Role.create({ id: 2, name: "moderator" });
 //     Role.create({ id: 3, name: "admin" });
 // }
+// ***********************
+
+// ####### 2.
+//-- comment all no 1. and comment out no 2.
+// ***********************
+// db.sequelize.sync({ alter: true });
+// ***********************
 
 /************************************************* */
 
